@@ -1,17 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
+
+import { connect } from 'react-redux';
 import Card from 'components/molecules/Card/Card';
 import CardsTemplate from 'templates/CardsTemplate';
 
-const Todos = () => (
+const Todos = ({ todos }) => (
   <CardsTemplate>
-    <h1>Todos View</h1>
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
+    {todos.map((todo) => (
+      <Card
+        title={todo.title}
+        id={todo.id}
+        created={todo.created}
+        deadline={todo.deadline}
+        content={todo.content}
+      />
+    ))}
   </CardsTemplate>
 );
 
-export default Todos;
+const mapStateToProps = ({ todos }) => ({ todos });
+
+export default connect(mapStateToProps)(Todos);

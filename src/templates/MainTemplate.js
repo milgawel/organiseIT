@@ -35,7 +35,6 @@ class MainTemplate extends Component {
   render() {
     const { children } = this.props;
     const { pageType } = this.state;
-    console.log(pageType);
 
     return (
       <div>

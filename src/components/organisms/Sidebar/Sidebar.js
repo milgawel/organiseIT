@@ -18,15 +18,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* border-image: linear-gradient(
-    to right,
-    #3455eb,
-    ${({ pageColor, theme }) => theme[pageColor]}
-  ); */
-  /* box-shadow: inset 10px 0 10px -5px ${({ pageColor, theme }) =>
-    theme[pageColor]}; */
-  box-shadow: inset 10px 0 10px -5px red;
-  transition: all ease-in 0.9s;
+  box-shadow: 5px 0 10px 1px ${({ theme, pageColor }) => theme[pageColor]};
+  transition: all ease-in 0.5s;
 `;
 
 const StyledLogoButton = styled.a`
@@ -48,11 +41,16 @@ const StyledLogoutButton = styled.a`
   text-decoration: none;
   margin: 15px auto;
   color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const Sidebar = ({ pageContext }) => (
   <Wrapper pageColor={pageContext}>
-    <StyledLogoButton as={NavLink} to="/">
+    <StyledLogoButton as={NavLink} to="/notes">
       organise
       <br />
       IT

@@ -5,7 +5,6 @@ import CardsTemplate from 'templates/CardsTemplate';
 
 const Timer = () => (
   <CardsTemplate>
-    <h1>Timer View</h1>
     <Card />
     <Card />
     <Card />

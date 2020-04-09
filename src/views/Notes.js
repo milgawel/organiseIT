@@ -2,16 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import Card from 'components/molecules/Card/Card';
 import CardsTemplate from 'templates/CardsTemplate';
+import { connect } from 'react-redux';
 
-const Notes = () => (
+const Notes = ({ notes }) => (
   <CardsTemplate>
-    <h1>NOTES View</h1>
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
+    {notes.map((note) => (
+      <Card
+        title={note.title}
+        created={note.created}
+        content={note.content}
+        id={note.id}
+      />
+    ))}
   </CardsTemplate>
 );
 
-export default Notes;
+const mapStateToProps = ({ notes }) => ({ notes });
+
+export default connect(mapStateToProps)(Notes);

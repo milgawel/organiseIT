@@ -1,17 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import { connect } from 'react-redux';
 import Card from 'components/molecules/Card/Card';
 import CardsTemplate from 'templates/CardsTemplate';
 
-const Bookmarks = () => (
+const Bookmarks = ({ bookmarks }) => (
   <CardsTemplate>
-    <h1>BOOKMARKS View</h1>
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
+    {bookmarks.map((bookmark) => (
+      <Card
+        url={bookmark.url}
+        id={bookmark.id}
+        created={bookmark.created}
+        content={bookmark.content}
+      />
+    ))}
   </CardsTemplate>
 );
 
-export default Bookmarks;
+const mapStateToProps = ({ bookmarks }) => ({ bookmarks });
+
+export default connect(mapStateToProps)(Bookmarks);

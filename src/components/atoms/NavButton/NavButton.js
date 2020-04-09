@@ -24,6 +24,7 @@ const NavButton = styled.a`
   &.active {
     border-left: 8px solid ${({ theme, activeColor }) => theme[activeColor]};
     box-shadow: 0 0 20px ${({ theme, activeColor }) => theme[activeColor]};
+    transform: scale(1.15);
   }
 `;
 
