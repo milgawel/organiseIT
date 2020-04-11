@@ -7,7 +7,7 @@ const Bookmarks = ({ bookmarks }) => (
   <CardsTemplate>
     {bookmarks.map((bookmark) => (
       <Card
-        url={bookmark.url}
+        title={bookmark.title}
         id={bookmark.id}
         created={bookmark.created}
         content={bookmark.content}

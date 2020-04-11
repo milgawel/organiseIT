@@ -30,6 +30,10 @@ const StyledLogoButton = styled.a`
   margin: 50px auto 0;
   font-weight: ${({ theme }) => theme.bold};
   text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const StyledNavList = styled.ul`

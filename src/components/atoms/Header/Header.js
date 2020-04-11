@@ -6,7 +6,7 @@ const Header = styled.h1`
   font-size: ${({ theme }) => theme.fontSize.xl};
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 200px;
+  width: 80%;
 `;
 
 export default Header;

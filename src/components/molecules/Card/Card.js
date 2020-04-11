@@ -13,7 +13,6 @@ import todosIcon from 'assets/list.png';
 import timerIcon from 'assets/timer.png';
 
 const CardWrapper = styled.div`
-  width: 290px;
   max-height: 360px;
   box-shadow: 0px 0px 10px 2px black;
   border-radius: 10px;
@@ -26,6 +25,7 @@ const CardContent = styled.div`
   padding: 15px 15px;
   background-color: white;
   position: relative;
+  max-height: 280px;
 
   ${({ heading }) =>
     heading &&
@@ -68,6 +68,8 @@ const WebsiteImg = styled.img`
 
 const StyledParagraph = styled(Paragraph)`
   margin: 5px 0 5px;
+  height: 100%;
+  overflow-y: auto;
 `;
 
 const Card = ({
@@ -76,46 +78,52 @@ const Card = ({
   created,
   content,
   id,
-  url,
   deadline,
   removeItem,
-}) => (
-  <CardWrapper>
-    <CardContent heading activeColor={pageContext}>
-      <Header>
-        {pageContext === 'bookmarks' ? (
-          <StyledLink href={`https://www.${url}`}>{url}</StyledLink>
-        ) : (
-          title
+}) => {
+  return (
+    <CardWrapper>
+      <CardContent heading activeColor={pageContext}>
+        <Header>
+          {pageContext === 'bookmarks' ? (
+            <StyledLink href={`https://${title}`}>{title}</StyledLink>
+          ) : (
+            title
+          )}
+        </Header>
+        <Paragraph small>created {created}</Paragraph>
+
+        {pageContext === 'todos' && (
+          // <Paragraph small>deadline {JSON.stringify(deadline)}</Paragraph>
+          <Paragraph small>
+            deadline {deadline.toLocaleString().substring(0, 10)}
+          </Paragraph>
         )}
-      </Header>
-      <Paragraph small>created {created}</Paragraph>
+        {pageContext === 'notes' && <Icon src={notesIcon} />}
+        {pageContext === 'bookmarks' && <Icon src={bookmarksIcon} />}
+        {pageContext === 'todos' && <Icon src={todosIcon} />}
+        {pageContext === 'timer' && <Icon src={timerIcon} />}
+      </CardContent>
+      <CardContent flex>
+        <StyledParagraph>{content}</StyledParagraph>
+        {pageContext === 'bookmarks' && (
+          <a href={`https://${title}`}>
+            <WebsiteImg
+              src={`http://api.miniature.io/?width=260&height=130&url=${title}`}
+            />
+          </a>
+        )}
 
-      {pageContext === 'todos' && (
-        <Paragraph small>deadline {deadline}</Paragraph>
-      )}
-      {pageContext === 'notes' && <Icon src={notesIcon} />}
-      {pageContext === 'bookmarks' && <Icon src={bookmarksIcon} />}
-      {pageContext === 'todos' && <Icon src={todosIcon} />}
-      {pageContext === 'timer' && <Icon src={timerIcon} />}
-    </CardContent>
-    <CardContent flex>
-      <StyledParagraph>{content}</StyledParagraph>
-      {pageContext === 'bookmarks' && (
-        <WebsiteImg
-          src={`http://api.miniature.io/?width=260&height=130&url=${url}`}
-        />
-      )}
-
-      <Button
-        activeColor={pageContext}
-        onClick={() => removeItem(pageContext, id)}
-      >
-        Remove
-      </Button>
-    </CardContent>
-  </CardWrapper>
-);
+        <Button
+          activeColor={pageContext}
+          onClick={() => removeItem(pageContext, id)}
+        >
+          Remove
+        </Button>
+      </CardContent>
+    </CardWrapper>
+  );
+};
 
 Card.propTypes = {
   pageContext: PropTypes.string.isRequired,
@@ -123,7 +131,6 @@ Card.propTypes = {
   created: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  url: PropTypes.string.isRequired,
   deadline: PropTypes.string,
   removeItem: PropTypes.func.isRequired,
 };
@@ -132,8 +139,10 @@ Card.defaultProps = {
   deadline: '',
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
+  };
+};
 
 export default connect(null, mapDispatchToProps)(withContext(Card));

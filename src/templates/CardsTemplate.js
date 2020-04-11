@@ -16,13 +16,13 @@ const StyledGridTemplate = styled.div`
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (min-width: 1180px) {
+  @media (min-width: 1250px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1500px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-  @media (min-width: 2000px) {
+  @media (min-width: 1900px) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
@@ -75,8 +75,12 @@ class CardsTemplate extends React.Component {
         <AddItemButton
           activeColor={pageContext}
           onClick={this.handleButtonToggle}
+          isActive={this.state.AddItemBarActive}
         />
-        <AddItemBar isActive={this.state.AddItemBarActive} />
+        <AddItemBar
+          isActive={this.state.AddItemBarActive}
+          clickAction={this.handleButtonToggle}
+        />
         <StyledGridTemplate>{children}</StyledGridTemplate>
       </UserPageTemplate>
     );

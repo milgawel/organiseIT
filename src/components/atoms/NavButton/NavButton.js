@@ -4,7 +4,7 @@ const NavButton = styled.a`
   color: white;
   display: block;
   margin: 0 auto 20px;
-  width: 180px;
+  width: 170px;
   text-decoration: none;
   font-size: ${({ theme }) => theme.fontSize.m};
   text-align: center;
@@ -16,9 +16,14 @@ const NavButton = styled.a`
   background-position: 3% 50%;
   border-left: 8px solid transparent;
   box-shadow: 0 0 5px black;
+  transition: all 0.3s;
 
   ::first-letter {
     text-transform: uppercase;
+  }
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px ${({ theme, activeColor }) => theme[activeColor]};
   }
 
   &.active {
