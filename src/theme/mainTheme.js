@@ -2,7 +2,7 @@ const theme = {
   notes: '#112d4e',
   bookmarks: '#3d84a8',
   todos: '#46cdcf',
-  timer: '#abedd8',
+  timers: '#abedd8',
   black: 'black',
   grey: 'grey',
   lightgrey: 'lightgrey',

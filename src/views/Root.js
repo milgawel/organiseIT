@@ -6,7 +6,7 @@ import MainTemplate from 'templates/MainTemplate';
 import Notes from 'views/Notes';
 import Todos from 'views/Todos';
 import Bookmarks from 'views/Bookmarks';
-import Timer from 'views/Timer';
+import Timers from 'views/Timers';
 
 const Root = () => (
   <Provider store={store}>
@@ -18,7 +18,7 @@ const Root = () => (
           <Route path="/notes" component={Notes} />
           <Route path="/bookmarks" component={Bookmarks} />
           <Route path="/todos" component={Todos} />
-          <Route path="/timer" component={Timer} />
+          <Route path="/timers" component={Timers} />
         </Switch>
       </MainTemplate>
     </BrowserRouter>

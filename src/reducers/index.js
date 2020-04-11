@@ -7,7 +7,7 @@ const initialState = {
       content: 'Funny cats on youtube',
     },
     {
-      title: 'www.gismeteo.pl/weather-warsaw-3196.',
+      title: 'www.gismeteo.pl/weather-warsaw-3196',
       id: '3323',
       created: '22.02.2020',
       content: 'Weather forecast for Warsaw',
@@ -90,6 +90,32 @@ const initialState = {
       created: '20.02.2020',
       deadline: '30.09.2021',
       content: 'Points to achieve: lose weigth, make some muscles',
+    },
+  ],
+  timers: [
+    {
+      id: '2931',
+      title: 'work with project',
+      created: '11.04.2020',
+      content: 243,
+    },
+    {
+      id: '212',
+      title: 'learning new technology',
+      created: '01.04.2020',
+      content: 1243,
+    },
+    {
+      id: '131',
+      title: 'work with project for client',
+      created: '11.04.2020',
+      content: 32243,
+    },
+    {
+      id: '3931',
+      title: 'preparing datas for client',
+      created: '15.04.2020',
+      content: 13243,
     },
   ],
 };

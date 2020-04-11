@@ -98,12 +98,12 @@ const Sidebar = ({ pageContext }) => (
       <li>
         <NavButton
           as={NavLink}
-          to="/timer"
-          name="timer"
+          to="/timers"
+          name="timers"
           icon={timer}
-          activeColor="timer"
+          activeColor="timers"
         >
-          timer
+          timers
         </NavButton>
       </li>
     </StyledNavList>

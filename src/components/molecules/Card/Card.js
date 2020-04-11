@@ -10,7 +10,6 @@ import Button from 'components/atoms/Button/Button';
 import notesIcon from 'assets/editw.png';
 import bookmarksIcon from 'assets/bookmark.png';
 import todosIcon from 'assets/list.png';
-import timerIcon from 'assets/timer.png';
 
 const CardWrapper = styled.div`
   max-height: 360px;
@@ -102,7 +101,6 @@ const Card = ({
         {pageContext === 'notes' && <Icon src={notesIcon} />}
         {pageContext === 'bookmarks' && <Icon src={bookmarksIcon} />}
         {pageContext === 'todos' && <Icon src={todosIcon} />}
-        {pageContext === 'timer' && <Icon src={timerIcon} />}
       </CardContent>
       <CardContent flex>
         <StyledParagraph>{content}</StyledParagraph>

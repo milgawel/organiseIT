@@ -16,10 +16,10 @@ const StyledGridTemplate = styled.div`
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (min-width: 1250px) {
+  @media (min-width: 1350px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
-  @media (min-width: 1500px) {
+  @media (min-width: 1700px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   @media (min-width: 1900px) {
@@ -61,7 +61,7 @@ class CardsTemplate extends React.Component {
         <StyledHeader>
           <Input
             type="text"
-            placeholder="search"
+            placeholder="search by title"
             activeColor={pageContext}
             search
           />

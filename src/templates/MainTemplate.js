@@ -19,7 +19,7 @@ class MainTemplate extends Component {
   }
 
   setCurrentPage = (prevState = '') => {
-    const pageTypes = ['notes', 'bookmarks', 'todos', 'timer'];
+    const pageTypes = ['notes', 'bookmarks', 'todos', 'timers'];
 
     const {
       location: { pathname },

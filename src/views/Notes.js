@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import Card from 'components/molecules/Card/Card';
 import CardsTemplate from 'templates/CardsTemplate';
 import { connect } from 'react-redux';
