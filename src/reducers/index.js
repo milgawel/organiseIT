@@ -1,13 +1,13 @@
 const initialState = {
   bookmarks: [
     {
-      title: 'www.youtube.com.watch?v=WEkSYw3o5is',
+      title: 'www.youtube.com/watch?v=WEkSYw3o5is',
       id: '12323',
       created: '20.02.2020',
       content: 'Funny cats on youtube',
     },
     {
-      title: 'www.gismeteo.pl.weather-warsaw-3196.',
+      title: 'www.gismeteo.pl/weather-warsaw-3196.',
       id: '3323',
       created: '22.02.2020',
       content: 'Weather forecast for Warsaw',
