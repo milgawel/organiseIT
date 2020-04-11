@@ -10,7 +10,7 @@ import Timer from 'views/Timer';
 
 const Root = () => (
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <MainTemplate>
         <Switch>
           <Route exact path="/" component={() => <Redirect to="/notes" />} />
