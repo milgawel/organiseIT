@@ -17,7 +17,6 @@ export const addItem = (itemType, itemContent) => {
     const yyyy = today.getFullYear();
 
     today = `${dd}.${mm}.${yyyy}`;
-    console.log(today);
     return today;
   };
 

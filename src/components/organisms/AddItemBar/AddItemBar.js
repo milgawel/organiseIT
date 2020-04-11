@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
@@ -143,6 +143,13 @@ const AddItemBar = ({ pageContext, isActive, addItem, clickAction }) => {
       </Formik>
     </StyledWrapper>
   );
+};
+
+AddItemBar.propTypes = {
+  pageContext: PropTypes.string.isRequired,
+  isActive: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
+  clickAction: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
