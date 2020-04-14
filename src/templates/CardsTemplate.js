@@ -12,7 +12,11 @@ const StyledGridTemplate = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 
-  @media (min-width: 600px) {
+  @media (min-width: 100px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1000px) {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -41,10 +45,14 @@ const StyledHeader = styled.div`
   margin-bottom: 20px;
   padding-left: 45px;
 `;
+// #############################################################################
+// #############################################################################
+// #############################################################################
 
 class CardsTemplate extends React.Component {
   state = {
     AddItemBarActive: null,
+    searchInputValue: '',
   };
 
   handleButtonToggle = () => {
@@ -53,23 +61,32 @@ class CardsTemplate extends React.Component {
     }));
   };
 
+  handleFilterInput = (e) => {
+    console.log(`input filter ${e.target.value}`);
+    this.setState({
+      searchInputValue: e.target.value,
+    });
+    console.log(`costam ${this.state.searchInputValue}`);
+  };
+
   render() {
-    const { children, pageContext } = this.props;
+    let { children, pageContext, inputHandler } = this.props;
 
     return (
-      <UserPageTemplate>
+      <UserPageTemplate active={this.state.searchInputValue}>
         <StyledHeader>
           <Input
             type="text"
             placeholder="search by title"
             activeColor={pageContext}
             search
+            onChange={(e) => inputHandler(e.target.value.toLowerCase())}
           />
           <StyledHeading>
-            {pageContext === 'todos' ? 'Tasks' : pageContext}
+            {pageContext === 'tasks' ? 'Tasks' : pageContext}
           </StyledHeading>
           <Paragraph>
-            6 {pageContext === 'todos' ? 'Tasks' : pageContext}
+            6 {pageContext === 'tasks' ? 'Tasks' : pageContext}
           </Paragraph>
         </StyledHeader>
         <AddItemButton

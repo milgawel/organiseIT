@@ -1,6 +1,7 @@
 const theme = {
   notes: '#112d4e',
   bookmarks: '#3d84a8',
+  tasks: '#46cdcf',
   todos: '#46cdcf',
   timers: '#abedd8',
   black: 'black',

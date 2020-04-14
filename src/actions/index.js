@@ -31,3 +31,14 @@ export const addItem = (itemType, itemContent) => {
     },
   };
 };
+
+export const modifyItem = (itemType, id, content) => {
+  return {
+    type: 'MODIFY_ITEM',
+    payload: {
+      itemType,
+      id,
+      content,
+    },
+  };
+};

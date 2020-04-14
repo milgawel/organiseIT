@@ -74,6 +74,7 @@ const AddItemBar = ({ pageContext, isActive, addItem, clickAction }) => {
         initialValues={{
           title: '',
           content: '',
+          time: 0,
           deadline: new Date(),
         }}
         validationSchema={Yup.object({
@@ -81,9 +82,8 @@ const AddItemBar = ({ pageContext, isActive, addItem, clickAction }) => {
             .min(3, 'Must be 3 characters or more')
             .required('Required'),
 
-          content: Yup.string()
-            .min(1, 'Must be 1 character or more')
-            .required('Required'),
+          content: Yup.string().min(1, 'Must be 1 character or more'),
+          // .required('Required'),
         })}
         onSubmit={(values, { resetForm }) => {
           addItem(pageContext, values);
@@ -123,14 +123,17 @@ const AddItemBar = ({ pageContext, isActive, addItem, clickAction }) => {
               />
             ) : null}
 
-            <StyledTextArea
-              as="textarea"
-              placeholder="description"
-              name="content"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.content}
-            />
+            {pageContext === 'timers' ? null : (
+              <StyledTextArea
+                as="textarea"
+                placeholder="description"
+                name="content"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.content}
+              />
+            )}
+
             {errors.content ? (
               <StyledErrorDiv>{errors.content}</StyledErrorDiv>
             ) : null}

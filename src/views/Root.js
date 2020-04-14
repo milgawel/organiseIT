@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import store from 'store';
 import MainTemplate from 'templates/MainTemplate';
 import Notes from 'views/Notes';
-import Todos from 'views/Todos';
+import Tasks from 'views/Tasks';
 import Bookmarks from 'views/Bookmarks';
 import Timers from 'views/Timers';
 
@@ -17,7 +17,7 @@ const Root = () => (
           <Route path="/notes" component={Notes} />
           <Route path="/notes" component={Notes} />
           <Route path="/bookmarks" component={Bookmarks} />
-          <Route path="/todos" component={Todos} />
+          <Route path="/tasks" component={Tasks} />
           <Route path="/timers" component={Timers} />
         </Switch>
       </MainTemplate>

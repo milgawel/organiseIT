@@ -92,7 +92,7 @@ const Card = ({
         </Header>
         <Paragraph small>created {created}</Paragraph>
 
-        {pageContext === 'todos' && (
+        {pageContext === 'tasks' && (
           // <Paragraph small>deadline {JSON.stringify(deadline)}</Paragraph>
           <Paragraph small>
             deadline {deadline.toLocaleString().substring(0, 10)}
@@ -100,7 +100,7 @@ const Card = ({
         )}
         {pageContext === 'notes' && <Icon src={notesIcon} />}
         {pageContext === 'bookmarks' && <Icon src={bookmarksIcon} />}
-        {pageContext === 'todos' && <Icon src={todosIcon} />}
+        {pageContext === 'tasks' && <Icon src={todosIcon} />}
       </CardContent>
       <CardContent flex>
         <StyledParagraph>{content}</StyledParagraph>

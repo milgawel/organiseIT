@@ -86,12 +86,12 @@ const Sidebar = ({ pageContext }) => (
       <li>
         <NavButton
           as={NavLink}
-          to="/todos"
-          name="todos"
+          to="/tasks"
+          name="tasks"
           icon={list}
-          activeColor="todos"
+          activeColor="tasks"
         >
-          todos
+          tasks
         </NavButton>
       </li>
 

@@ -2,7 +2,10 @@ import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeItem as removeItemAction } from 'actions';
+import {
+  removeItem as removeItemAction,
+  modifyItem as modifyItemAction,
+} from 'actions';
 import withContext from 'hoc/withContext';
 import Header from 'components/atoms/Header/Header';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
@@ -40,7 +43,7 @@ const CardContent = styled.div`
     css`
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-time: space-between;
     `}
 `;
 
@@ -64,7 +67,6 @@ const StyledParagraph = styled(Paragraph)`
 
 const StyledPanel = styled.div`
   width: 35%;
-  /* border: 2px solid ${({ active }) => (active ? 'green' : 'red')}; */
   height: 45px;
   display: flex;
   flex-direction: row;
@@ -101,8 +103,9 @@ const StyledButton = styled.button`
   background-repeat: no-repeat;
   border: none;
   cursor: pointer;
-  opacity: ${({ record }) => (record ? 0 : 1)};
-
+  opacity: ${({ recording }) => (recording ? 0 : 1)};
+  outline: none;
+  transition: all 0.2s ease-in-out;
   ${({ active }) =>
     active &&
     css`
@@ -110,19 +113,36 @@ const StyledButton = styled.button`
       animation-duration: 1.5s;
       animation-iteration-count: infinite;
     `};
+
+  &:hover {
+    transform: scale(1.15);
+  }
 `;
 
 class TimerCard extends React.Component {
   state = {
-    time: 0,
-    active: true,
+    time: '',
+    active: false,
   };
 
   componentDidMount() {
-    const { content } = this.props;
+    const { time, title } = this.props;
+    console.log(`czas z propsów ${time}`);
+    console.log(`tytuł z propsów ${title}`);
+
     this.setState({
-      time: content,
+      time,
     });
+  }
+
+  componentWillUnmount() {
+    const { time, title } = this.props;
+    console.log(`unmounted title ${title}`);
+    console.log(`unmounted title ${time}`);
+    this.setState({
+      time: '',
+    });
+    console.log(`unmounted console log ${this.props.time}`);
   }
 
   getTime = (totalSeconds) => {
@@ -135,8 +155,37 @@ class TimerCard extends React.Component {
     }:${seconds > 9 ? seconds : `0${seconds}`}`;
   };
 
+  timerStop = () => {
+    clearInterval(this.timer);
+    console.log(this.state.time);
+    this.setState({
+      active: false,
+    });
+  };
+
+  timerStart = () => {
+    this.setState({
+      active: true,
+    });
+    this.timer = setInterval(() => {
+      console.log(this.state.time);
+      this.setState((prevState) => ({
+        time: prevState.time + 1,
+      }));
+      this.time = +1;
+    }, 1000);
+  };
+
   render() {
-    const { pageContext, title, created, id, removeItem } = this.props;
+    const {
+      pageContext,
+      title,
+      created,
+      id,
+      time,
+      removeItem,
+      modifyItem,
+    } = this.props;
 
     return (
       <CardWrapper>
@@ -148,16 +197,30 @@ class TimerCard extends React.Component {
         <CardContent flex>
           <TimePanel>
             <StyledParagraph>{this.getTime(this.state.time)}</StyledParagraph>
+
             <StyledPanel active={this.state.active}>
-              <StyledButton icon={dotIcon} active={this.state.active} record />
-              <StyledButton icon={startIcon} />
-              <StyledButton icon={stopIcon} />
+              <StyledButton
+                icon={dotIcon}
+                active={this.state.active}
+                recording
+              />
+              <StyledButton icon={startIcon} onClick={this.timerStart} />
+              <StyledButton
+                icon={stopIcon}
+                onClick={() => {
+                  this.timerStop();
+                  modifyItem(pageContext, id, this.state.time);
+                }}
+              />
             </StyledPanel>
           </TimePanel>
 
           <Button
             activeColor={pageContext}
-            onClick={() => removeItem(pageContext, id)}
+            onClick={() => {
+              console.log(`button onclick ${id}`);
+              removeItem(pageContext, id);
+            }}
           >
             Remove
           </Button>
@@ -171,14 +234,17 @@ TimerCard.propTypes = {
   pageContext: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   removeItem: PropTypes.func.isRequired,
+  modifyItem: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
+    modifyItem: (itemType, time, id) =>
+      dispatch(modifyItemAction(itemType, time, id)),
   };
 };
 

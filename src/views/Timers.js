@@ -4,18 +4,37 @@ import CardsTemplate from 'templates/CardsTemplate';
 
 import { connect } from 'react-redux';
 
-const Timers = ({ timers }) => (
-  <CardsTemplate>
-    {timers.map((timer) => (
-      <TimerCard
-        title={timer.title}
-        created={timer.created}
-        content={timer.content}
-        id={timer.id}
-      />
-    ))}
-  </CardsTemplate>
-);
+class Timers extends React.Component {
+  state = {
+    filterName: '',
+  };
+
+  handleInputFilter = (data) => {
+    this.setState({
+      filterName: data,
+    });
+  };
+
+  render() {
+    const { timers } = this.props;
+    const filteredTimers = timers.filter((timer) =>
+      timer.title.toLowerCase().includes(this.state.filterName),
+    );
+
+    return (
+      <CardsTemplate inputHandler={this.handleInputFilter}>
+        {filteredTimers.map((timer) => (
+          <TimerCard
+            title={timer.title}
+            created={timer.created}
+            time={timer.time}
+            id={timer.id}
+          />
+        ))}
+      </CardsTemplate>
+    );
+  }
+}
 
 const mapStateToProps = ({ timers }) => ({ timers });
 

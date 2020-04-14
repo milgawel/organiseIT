@@ -3,18 +3,37 @@ import { connect } from 'react-redux';
 import Card from 'components/molecules/Card/Card';
 import CardsTemplate from 'templates/CardsTemplate';
 
-const Bookmarks = ({ bookmarks }) => (
-  <CardsTemplate>
-    {bookmarks.map((bookmark) => (
-      <Card
-        title={bookmark.title}
-        id={bookmark.id}
-        created={bookmark.created}
-        content={bookmark.content}
-      />
-    ))}
-  </CardsTemplate>
-);
+class Bookmarks extends React.Component {
+  state = {
+    filterName: '',
+  };
+
+  handleInputFilter = (data) => {
+    this.setState({
+      filterName: data,
+    });
+  };
+
+  render() {
+    const { bookmarks } = this.props;
+    const filteredBookmarks = bookmarks.filter((bookmark) =>
+      bookmark.title.toLowerCase().includes(this.state.filterName),
+    );
+
+    return (
+      <CardsTemplate inputHandler={this.handleInputFilter}>
+        {filteredBookmarks.map((bookmark) => (
+          <Card
+            title={bookmark.title}
+            id={bookmark.id}
+            created={bookmark.created}
+            content={bookmark.content}
+          />
+        ))}
+      </CardsTemplate>
+    );
+  }
+}
 
 const mapStateToProps = ({ bookmarks }) => ({ bookmarks });
 

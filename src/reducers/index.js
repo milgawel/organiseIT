@@ -31,7 +31,7 @@ const initialState = {
       id: '14223',
       created: '20.02.2020',
       content:
-        'Lorem ip123333333333333333333sum dolor sit amet, consectetur adipisicing elit. Dolore, ea expedita. Porro aspernatur, non beatae similique dicta doloremque fuga reiciendis labore iusto quidem adipisci aliquid nostrum placeat id, atque molestiae.',
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, ea expedita. Porro aspernatur, non beatae similique dicta doloremque fuga reiciendis labore iusto quidem adipisci aliquid nostrum placeat id, atque molestiae.',
     },
     {
       title: 'note 2',
@@ -62,7 +62,7 @@ const initialState = {
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, ea expedita. Porro aspernatur, non beatae similique dicta doloremque fuga reiciendis labore iusto quidem adipisci aliquid nostrum placeat id, atque molestiae.',
     },
   ],
-  todos: [
+  tasks: [
     {
       title: 'Clean my room',
       id: '123213',
@@ -94,28 +94,28 @@ const initialState = {
   ],
   timers: [
     {
-      id: '2931',
-      title: 'work with project',
+      id: '1',
+      title: '1work with project',
       created: '11.04.2020',
-      content: 243,
+      time: 1,
     },
     {
-      id: '212',
-      title: 'learning new technology',
+      id: '2',
+      title: '2learning new technology',
       created: '01.04.2020',
-      content: 1243,
+      time: 1243,
     },
     {
-      id: '131',
-      title: 'work with project for client',
+      id: '3',
+      title: '3work with project for client',
       created: '11.04.2020',
-      content: 32243,
+      time: 32243,
     },
     {
-      id: '3931',
-      title: 'preparing datas for client',
+      id: '4',
+      title: '4preparing datas for client',
       created: '15.04.2020',
-      content: 13243,
+      time: 13243,
     },
   ],
 };
@@ -139,6 +139,25 @@ const rootReducer = (state = initialState, action) => {
           action.payload.item,
         ],
       };
+
+    case 'MODIFY_ITEM':
+      return {
+        ...state,
+        [action.payload.itemType]: [
+          ...state[action.payload.itemType].map((item) => {
+            if (item.id === action.payload.id) {
+              return {
+                ...item,
+                content: action.payload.content,
+              };
+            }
+            return {
+              ...item,
+            };
+          }),
+        ],
+      };
+
     default:
       return state;
   }
