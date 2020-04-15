@@ -182,7 +182,6 @@ class TimerCard extends React.Component {
       title,
       created,
       id,
-      time,
       removeItem,
       modifyItem,
     } = this.props;

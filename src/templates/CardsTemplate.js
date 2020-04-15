@@ -86,7 +86,10 @@ class CardsTemplate extends React.Component {
             {pageContext === 'tasks' ? 'Tasks' : pageContext}
           </StyledHeading>
           <Paragraph>
-            6 {pageContext === 'tasks' ? 'Tasks' : pageContext}
+            {children.length}{' '}
+            {children.length === 1
+              ? pageContext.substring(0, pageContext.length - 1)
+              : pageContext}
           </Paragraph>
         </StyledHeader>
         <AddItemButton

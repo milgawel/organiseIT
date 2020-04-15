@@ -120,9 +120,37 @@ const initialState = {
   ],
 };
 
-const rootReducer = (state = initialState, action) => {
+const DataHandler = () => {
+  const data = JSON.parse(window.localStorage.getItem('OrganiseItAppData'));
+  if (data) {
+    return data;
+  }
+  return initialState;
+};
+
+const rootReducer = (state = DataHandler(), action) => {
   switch (action.type) {
-    case 'REMOVE_ITEM':
+    case 'REMOVE_ITEM': {
+      // LOCAL STORAGE
+      console.log('removed item in localhost');
+      const newState = () => {
+        return {
+          ...state,
+          [action.payload.itemType]: [
+            ...state[action.payload.itemType].filter(
+              (item) => item.id !== action.payload.id,
+            ),
+          ],
+        };
+      };
+
+      window.localStorage.setItem(
+        'OrganiseItAppData',
+        JSON.stringify(newState()),
+      );
+
+      // REDUX STORAGE
+
       return {
         ...state,
         [action.payload.itemType]: [
@@ -131,7 +159,27 @@ const rootReducer = (state = initialState, action) => {
           ),
         ],
       };
-    case 'ADD_ITEM':
+    }
+
+    case 'ADD_ITEM': {
+      // LOCAL STORAGE
+      console.log('added item in localhost');
+      const newState = () => {
+        return {
+          ...state,
+          [action.payload.itemType]: [
+            ...state[action.payload.itemType],
+            action.payload.item,
+          ],
+        };
+      };
+
+      window.localStorage.setItem(
+        'OrganiseItAppData',
+        JSON.stringify(newState()),
+      );
+
+      // REDUX STORAGE
       return {
         ...state,
         [action.payload.itemType]: [
@@ -139,8 +187,34 @@ const rootReducer = (state = initialState, action) => {
           action.payload.item,
         ],
       };
+    }
+    case 'MODIFY_ITEM': {
+      // LOCAL STORAGE
+      console.log('modified item in localhost');
+      const newState = () => {
+        return {
+          ...state,
+          [action.payload.itemType]: [
+            ...state[action.payload.itemType].map((item) => {
+              if (item.id === action.payload.id) {
+                return {
+                  ...item,
+                  content: action.payload.content,
+                };
+              }
+              return {
+                ...item,
+              };
+            }),
+          ],
+        };
+      };
 
-    case 'MODIFY_ITEM':
+      window.localStorage.setItem(
+        'OrganiseItAppData',
+        JSON.stringify(newState()),
+      );
+
       return {
         ...state,
         [action.payload.itemType]: [
@@ -157,6 +231,7 @@ const rootReducer = (state = initialState, action) => {
           }),
         ],
       };
+    }
 
     default:
       return state;
