@@ -135,6 +135,11 @@ class TimerCard extends React.Component {
     });
   }
 
+  componentDidUpdate() {
+    if (this.state.active)
+      document.title = `recording:  ${this.getTime(this.state.time)}`;
+  }
+
   componentWillUnmount() {
     const { time, title } = this.props;
     console.log(`unmounted title ${title}`);
@@ -164,16 +169,18 @@ class TimerCard extends React.Component {
   };
 
   timerStart = () => {
-    this.setState({
-      active: true,
-    });
-    this.timer = setInterval(() => {
-      console.log(this.state.time);
-      this.setState((prevState) => ({
-        time: prevState.time + 1,
-      }));
-      this.time = +1;
-    }, 1000);
+    if (!this.state.active) {
+      this.setState({
+        active: true,
+      });
+      this.timer = setInterval(() => {
+        console.log(this.state.time);
+        this.setState((prevState) => ({
+          time: prevState.time + 1,
+        }));
+        this.time = +1;
+      }, 1000);
+    }
   };
 
   render() {
@@ -182,6 +189,7 @@ class TimerCard extends React.Component {
       title,
       created,
       id,
+      time,
       removeItem,
       modifyItem,
     } = this.props;
@@ -196,6 +204,7 @@ class TimerCard extends React.Component {
         <CardContent flex>
           <TimePanel>
             <StyledParagraph>{this.getTime(this.state.time)}</StyledParagraph>
+            <StyledParagraph>{time}</StyledParagraph>
 
             <StyledPanel active={this.state.active}>
               <StyledButton

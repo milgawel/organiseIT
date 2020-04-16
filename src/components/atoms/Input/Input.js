@@ -20,6 +20,10 @@ const Input = styled.input`
       background-image: url(${searchIcon});
       padding: 5px 5px 5px 35px;
     `}
+
+  @media (max-width: 640px) {
+    margin-bottom: 5px;
+  }
 `;
 
 export default Input;

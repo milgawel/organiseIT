@@ -14,8 +14,14 @@ const GlobalStyle = createGlobalStyle`
 html{
   font-family: 'Montserrat', sans-serif;
   padding-left:230px
+  
 }
 
+@media (max-width: 640px) {
+    html{
+      padding-left:0px;
+    }
+  }
 `;
 
 export default GlobalStyle;

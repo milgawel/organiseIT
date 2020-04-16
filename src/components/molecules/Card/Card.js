@@ -55,8 +55,13 @@ const Icon = styled.img`
 `;
 
 const StyledLink = styled.a`
+  display: block;
   text-decoration: none;
   color: black;
+
+  @media (max-width: 640px) {
+    font-size: ${({ theme }) => theme.fontSize.m};
+  }
 `;
 
 const WebsiteImg = styled.img`

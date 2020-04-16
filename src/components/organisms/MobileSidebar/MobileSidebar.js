@@ -7,111 +7,105 @@ import edit from 'assets/editw.png';
 import list from 'assets/listw.png';
 import timer from 'assets/timerw.png';
 import withContext from 'hoc/withContext';
+import AddItemButton from 'components/atoms/AddItemButton/AddItemButton';
 
 const Wrapper = styled.div`
+  display: none;
   position: fixed;
   left: 0;
-  top: 0;
-  width: 230px;
-  height: 100vh;
-  background: linear-gradient(to right, #3455eb, blue);
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(to right, #1455eb, lightblue);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   box-shadow: 5px 0 10px 1px ${({ theme, pageColor }) => theme[pageColor]};
   transition: all ease-in 0.5s;
+  z-index: 999;
   @media (max-width: 640px) {
-    display: none;
-  }
-`;
-
-const StyledLogoButton = styled.a`
-  color: white;
-  display: block;
-  font-size: ${({ theme }) => theme.fontSize.l};
-  text-align: center;
-  margin: 50px auto 0;
-  font-weight: ${({ theme }) => theme.bold};
-  text-decoration: none;
-  transition: transform 0.3s ease-in-out;
-  &:hover {
-    transform: scale(1.1);
+    display: block;
   }
 `;
 
 const StyledNavList = styled.ul`
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 `;
 
-const StyledLogoutButton = styled.a`
-  display: block;
-  text-decoration: none;
-  margin: 15px auto;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s;
+const StyledListItem = styled.li`
+  width: 100%;
+`;
+
+const StyledNavButton = styled(NavButton)`
+  width: 100%;
+  height: 100%;
+  background-size: 50%;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-position: 50% 50%;
+  box-shadow: none;
+  border: 2px solid transparent;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1);
+    box-shadow: none;
+  }
+  &.active {
+    border-left: none;
+    box-shadow: none;
+    transform: scale(1);
   }
 `;
 
-const Sidebar = ({ pageContext }) => (
+const Spacer = styled.div``;
+
+const MobileSidebar = ({ pageContext }) => (
   <Wrapper pageColor={pageContext}>
-    <StyledLogoButton as={NavLink} to="/notes">
-      organise
-      <br />
-      IT
-    </StyledLogoButton>
     <StyledNavList>
-      <li>
-        <NavButton
+      <StyledListItem>
+        <StyledNavButton
           as={NavLink}
           to="/notes"
           name="notes"
           icon={edit}
           activeColor="notes"
-        >
-          notes
-        </NavButton>
-      </li>
-      <li>
-        <NavButton
+        />
+      </StyledListItem>
+      <StyledListItem>
+        <StyledNavButton
           as={NavLink}
           to="/bookmarks"
           name="bookmarks"
           icon={bookmark}
           activeColor="bookmarks"
-        >
-          bookmarks
-        </NavButton>
-      </li>
-
-      <li>
-        <NavButton
+        />
+      </StyledListItem>
+      <StyledListItem>
+        <Spacer />
+      </StyledListItem>
+      <StyledListItem>
+        <StyledNavButton
           as={NavLink}
           to="/tasks"
           name="tasks"
           icon={list}
           activeColor="tasks"
-        >
-          tasks
-        </NavButton>
-      </li>
-
-      <li>
-        <NavButton
+        />
+      </StyledListItem>
+      <StyledListItem>
+        <StyledNavButton
           as={NavLink}
           to="/timers"
           name="timers"
           icon={timer}
           activeColor="timers"
-        >
-          timers
-        </NavButton>
-      </li>
+        />
+      </StyledListItem>
     </StyledNavList>
-    <StyledLogoutButton>Log Out</StyledLogoutButton>
   </Wrapper>
 );
 
-export default withContext(Sidebar);
+export default withContext(MobileSidebar);

@@ -27,6 +27,13 @@ const StyledWrapper = styled.div`
   box-shadow: 0 0 10px 2px;
   transition: transform 0.3s ease-in-out;
   transform: translatex(${({ isActive }) => (isActive ? '0' : '100%')});
+
+  @media (max-width: 640px) {
+    width: 90%;
+    height: calc(100vh - 70px);
+    padding: 20px 20px;
+    border-bottom: 10px solid ${({ theme, activeColor }) => theme[activeColor]};
+  }
 `;
 
 const StyledTextArea = styled(Input)`

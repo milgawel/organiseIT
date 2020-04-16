@@ -13,13 +13,13 @@ const initialState = {
       content: 'Weather forecast for Warsaw',
     },
     {
-      title: 'www.allegro.pl.',
+      title: 'www.allegro.pl',
       id: '123',
       created: '24.02.2020',
       content: 'Website for online shopping',
     },
     {
-      title: 'www.pepper.pl.',
+      title: 'www.pepper.pl',
       id: '13',
       created: '29.02.2020',
       content: 'Website with great discount',

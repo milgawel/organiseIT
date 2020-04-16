@@ -32,6 +32,11 @@ const StyledGridTemplate = styled.div`
 
   padding: 15px 50px 30px 50px;
   grid-gap: 35px;
+
+  @media (max-width: 640px) {
+    padding: 10px 25px 85px 25px;
+    grid-gap: 25px;
+  }
 `;
 
 const StyledHeading = styled(Header)`
@@ -44,16 +49,49 @@ const StyledHeader = styled.div`
   margin-top: 50px;
   margin-bottom: 20px;
   padding-left: 45px;
+  @media (max-width: 640px) {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    padding-left: 25px;
+  }
 `;
 // #############################################################################
 // #############################################################################
 // #############################################################################
+
+const StyledMobileAddItemButton = styled(AddItemButton)`
+  position: fixed;
+  display: block;
+
+  width: 40px;
+  height: 40px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 0px;
+  box-shadow: none;
+  background-size: 50%;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 10px;
+  margin-bottom: 15px;
+`;
+
+const StyledAddItemButton = styled(AddItemButton)`
+  @media (max-width: 640px) {
+    display: none;
+  }
+`;
 
 class CardsTemplate extends React.Component {
   state = {
     AddItemBarActive: null,
     searchInputValue: '',
   };
+
+  componentDidMount() {
+    document.title = `organiseIt`;
+  }
 
   handleButtonToggle = () => {
     this.setState((prevState) => ({
@@ -92,7 +130,12 @@ class CardsTemplate extends React.Component {
               : pageContext}
           </Paragraph>
         </StyledHeader>
-        <AddItemButton
+        <StyledAddItemButton
+          activeColor={pageContext}
+          onClick={this.handleButtonToggle}
+          isActive={this.state.AddItemBarActive}
+        />
+        <StyledMobileAddItemButton
           activeColor={pageContext}
           onClick={this.handleButtonToggle}
           isActive={this.state.AddItemBarActive}

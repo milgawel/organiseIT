@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
+import MobileSidebar from 'components/organisms/MobileSidebar/MobileSidebar';
 
 const UserPageTemplate = ({ children }) => (
   <>
-    <Sidebar />
+    <Sidebar desktop />
+    <MobileSidebar mobile />
     {children}
   </>
 );
