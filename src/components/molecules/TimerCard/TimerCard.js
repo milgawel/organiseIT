@@ -98,7 +98,7 @@ const StyledButton = styled.button`
   margin-top: 7.5px;
   width: 25px;
   height: 25px;
-  
+
   background: url(${({ icon }) => icon});
   background-size: 100%;
   background-repeat: no-repeat;
@@ -219,6 +219,7 @@ class TimerCard extends React.Component {
                 onClick={() => {
                   this.timerStop();
                   modifyItem(pageContext, id, this.state.time);
+                  window.location.reload();
                 }}
               />
             </StyledPanel>
