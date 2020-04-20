@@ -95,25 +95,25 @@ const initialState = {
   timers: [
     {
       id: '1',
-      title: '1work with project',
+      title: 'Work with project',
       created: '11.04.2020',
       time: 1,
     },
     {
       id: '2',
-      title: '2learning new technology',
+      title: 'Learning new technology',
       created: '01.04.2020',
       time: 1243,
     },
     {
       id: '3',
-      title: '3work with project for client',
+      title: 'Work with project for client',
       created: '11.04.2020',
       time: 32243,
     },
     {
       id: '4',
-      title: '4preparing datas for client',
+      title: 'Preparing datas for client',
       created: '15.04.2020',
       time: 13243,
     },

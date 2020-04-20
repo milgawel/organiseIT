@@ -56,7 +56,7 @@ const StyledHeader = styled.div`
     padding-left: 25px;
   }
 `;
-const StyledButton = styled.button`
+const StyledDiv = styled.div`
   border: none;
   width: 20px;
   height: 20px;
@@ -148,9 +148,9 @@ class CardsTemplate extends React.Component {
               : pageContext}
           </Paragraph>
           {pageContext === 'timers' ? (
-            <StyledButton title="Remember to stop timer, and to not close browser during timer work, otherwise you will lose your progress">
+            <StyledDiv title="Remember to stop timer, and to not close browser during timer work, otherwise you will lose your progress">
               ?
-            </StyledButton>
+            </StyledDiv>
           ) : null}
         </StyledHeader>
 
