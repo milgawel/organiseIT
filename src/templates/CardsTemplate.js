@@ -5,6 +5,7 @@ import withContext from 'hoc/withContext';
 import Header from 'components/atoms/Header/Header';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Input from 'components/atoms/Input/Input';
+import PropTypes from 'prop-types';
 import AddItemButton from 'components/atoms/AddItemButton/AddItemButton';
 import AddItemBar from 'components/organisms/AddItemBar/AddItemBar';
 
@@ -124,7 +125,7 @@ class CardsTemplate extends React.Component {
   };
 
   render() {
-    let { children, pageContext, inputHandler } = this.props;
+    const { children, pageContext, inputHandler } = this.props;
 
     return (
       <UserPageTemplate active={this.state.searchInputValue}>
@@ -172,5 +173,12 @@ class CardsTemplate extends React.Component {
     );
   }
 }
+
+CardsTemplate.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  pageContext: PropTypes.oneOf(['notes', 'bookmarks', 'tasks', 'timers'])
+    .isRequired,
+  inputHandler: PropTypes.func.isRequired,
+};
 
 export default withContext(CardsTemplate);

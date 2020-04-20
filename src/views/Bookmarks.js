@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Card from 'components/molecules/Card/Card';
+import PropTypes from 'prop-types';
 import CardsTemplate from 'templates/CardsTemplate';
 
 class Bookmarks extends React.Component {
@@ -35,6 +36,21 @@ class Bookmarks extends React.Component {
     );
   }
 }
+
+Bookmarks.propTypes = {
+  bookmarks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      created: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+Bookmarks.defaultProps = {
+  bookmarks: [],
+};
 
 const mapStateToProps = ({ bookmarks }) => ({ bookmarks });
 

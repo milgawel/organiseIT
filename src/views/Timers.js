@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TimerCard from 'components/molecules/TimerCard/TimerCard';
 import CardsTemplate from 'templates/CardsTemplate';
 
@@ -38,5 +39,20 @@ class Timers extends React.Component {
 }
 
 const mapStateToProps = ({ timers }) => ({ timers });
+
+Timers.propTypes = {
+  timers: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      time: PropTypes.string.isRequired,
+      created: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+Timers.defaultProps = {
+  timers: [],
+};
 
 export default connect(mapStateToProps)(Timers);

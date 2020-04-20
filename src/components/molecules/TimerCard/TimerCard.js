@@ -180,8 +180,6 @@ class TimerCard extends React.Component {
         }));
         this.time = +1;
       }, 1000);
-    } else if (this.state.active) {
-      return alert('timer is started');
     }
   };
 
@@ -191,7 +189,7 @@ class TimerCard extends React.Component {
       title,
       created,
       id,
-      time,
+
       removeItem,
       modifyItem,
     } = this.props;

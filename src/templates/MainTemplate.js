@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
 import theme from 'theme/mainTheme';
+import PropTypes from 'prop-types';
 import PageContext from 'context';
 
 class MainTemplate extends Component {
@@ -46,5 +47,12 @@ class MainTemplate extends Component {
     );
   }
 }
+
+MainTemplate.propTypes = {
+  children: PropTypes.element.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default withRouter(MainTemplate);
