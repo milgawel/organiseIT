@@ -32,13 +32,13 @@ export const addItem = (itemType, itemContent) => {
   };
 };
 
-export const modifyItem = (itemType, id, content) => {
+export const modifyItem = (itemType, id, time) => {
   return {
     type: 'MODIFY_ITEM',
     payload: {
       itemType,
       id,
-      content,
+      time,
     },
   };
 };

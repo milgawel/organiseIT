@@ -10,7 +10,7 @@ import withContext from 'hoc/withContext';
 import AddItemButton from 'components/atoms/AddItemButton/AddItemButton';
 
 const Wrapper = styled.div`
-  display: none;
+  display: block;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -23,8 +23,8 @@ const Wrapper = styled.div`
   box-shadow: 5px 0 10px 1px ${({ theme, pageColor }) => theme[pageColor]};
   transition: all ease-in 0.5s;
   z-index: 999;
-  @media (max-width: 640px) {
-    display: block;
+  @media (min-width: 640px) {
+    display: none;
   }
 `;
 

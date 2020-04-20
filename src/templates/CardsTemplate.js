@@ -55,14 +55,23 @@ const StyledHeader = styled.div`
     padding-left: 25px;
   }
 `;
-// #############################################################################
-// #############################################################################
-// #############################################################################
+const StyledButton = styled.button`
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 15px;
+  color: black;
+  background: orange;
+  font-weight: ${({ theme }) => theme.bold};
+  outline: none;
+  &:hover {
+    cursor: help;
+  }
+`;
 
 const StyledMobileAddItemButton = styled(AddItemButton)`
   position: fixed;
   display: block;
-
   width: 40px;
   height: 40px;
   bottom: 0;
@@ -75,6 +84,9 @@ const StyledMobileAddItemButton = styled(AddItemButton)`
   border: 2px solid white;
   border-radius: 10px;
   margin-bottom: 15px;
+  @media (min-width: 640px) {
+    display: none;
+  }
 `;
 
 const StyledAddItemButton = styled(AddItemButton)`
@@ -83,14 +95,18 @@ const StyledAddItemButton = styled(AddItemButton)`
   }
 `;
 
+// #############################################################################
+// #############################################################################
+// #############################################################################
+
 class CardsTemplate extends React.Component {
   state = {
     AddItemBarActive: null,
     searchInputValue: '',
   };
 
-  componentDidMount() {
-    document.title = `organiseIt`;
+  componentDidUpdate() {
+    document.title = `Organise ${this.props.pageContext}`;
   }
 
   handleButtonToggle = () => {
@@ -120,6 +136,7 @@ class CardsTemplate extends React.Component {
             search
             onChange={(e) => inputHandler(e.target.value.toLowerCase())}
           />
+
           <StyledHeading>
             {pageContext === 'tasks' ? 'Tasks' : pageContext}
           </StyledHeading>
@@ -129,7 +146,13 @@ class CardsTemplate extends React.Component {
               ? pageContext.substring(0, pageContext.length - 1)
               : pageContext}
           </Paragraph>
+          {pageContext === 'timers' ? (
+            <StyledButton title="Remember to stop timer, and to not close browser during timer work, otherwise you will lose your progress">
+              ?
+            </StyledButton>
+          ) : null}
         </StyledHeader>
+
         <StyledAddItemButton
           activeColor={pageContext}
           onClick={this.handleButtonToggle}

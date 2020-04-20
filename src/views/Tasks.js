@@ -29,6 +29,7 @@ class Tasks extends React.Component {
             created={todo.created}
             deadline={todo.deadline}
             content={todo.content}
+            key={todo.id}
           />
         ))}
       </CardsTemplate>

@@ -29,6 +29,7 @@ class Notes extends React.Component {
             created={note.created}
             content={note.content}
             id={note.id}
+            key={note.id}
           />
         ))}
       </CardsTemplate>

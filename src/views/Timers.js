@@ -29,6 +29,7 @@ class Timers extends React.Component {
             created={timer.created}
             time={timer.time}
             id={timer.id}
+            key={timer.id}
           />
         ))}
       </CardsTemplate>

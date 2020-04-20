@@ -28,6 +28,7 @@ class Bookmarks extends React.Component {
             id={bookmark.id}
             created={bookmark.created}
             content={bookmark.content}
+            key={bookmark.id}
           />
         ))}
       </CardsTemplate>

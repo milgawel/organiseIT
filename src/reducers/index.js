@@ -191,6 +191,9 @@ const rootReducer = (state = DataHandler(), action) => {
     case 'MODIFY_ITEM': {
       // LOCAL STORAGE
       console.log('modified item in localhost');
+      console.log(`action.payload.itemType ${action.payload.itemType}`);
+      console.log(`action.payload.id ${action.payload.id}`);
+      console.log(`action.payload.time ${action.payload.time}`);
       const newState = () => {
         return {
           ...state,
@@ -199,7 +202,7 @@ const rootReducer = (state = DataHandler(), action) => {
               if (item.id === action.payload.id) {
                 return {
                   ...item,
-                  content: action.payload.content,
+                  time: action.payload.time,
                 };
               }
               return {

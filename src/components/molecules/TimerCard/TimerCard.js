@@ -98,6 +98,7 @@ const StyledButton = styled.button`
   margin-top: 7.5px;
   width: 25px;
   height: 25px;
+  
   background: url(${({ icon }) => icon});
   background-size: 100%;
   background-repeat: no-repeat;
@@ -126,29 +127,28 @@ class TimerCard extends React.Component {
   };
 
   componentDidMount() {
-    const { time, title } = this.props;
-    console.log(`czas z propsów ${time}`);
-    console.log(`tytuł z propsów ${title}`);
-
+    const { time } = this.props;
+    console.log(`time time time timetteteetetet ${time}`);
     this.setState({
       time,
     });
   }
 
   componentDidUpdate() {
-    if (this.state.active)
+    if (this.state.active) {
       document.title = `recording:  ${this.getTime(this.state.time)}`;
+    }
   }
 
-  componentWillUnmount() {
-    const { time, title } = this.props;
-    console.log(`unmounted title ${title}`);
-    console.log(`unmounted title ${time}`);
-    this.setState({
-      time: '',
-    });
-    console.log(`unmounted console log ${this.props.time}`);
-  }
+  // componentWillUnmount() {
+  //   const { time, title } = this.props;
+  //   console.log(`unmounted title ${title}`);
+  //   console.log(`unmounted title ${time}`);
+  //   this.setState({
+  //     time: '',
+  //   });
+  //   console.log(`unmounted console log ${this.props.time}`);
+  // }
 
   getTime = (totalSeconds) => {
     const hours = Math.floor(totalSeconds / 3600);
@@ -169,7 +169,7 @@ class TimerCard extends React.Component {
   };
 
   timerStart = () => {
-    if (!this.state.active) {
+    if (this.state.active === false) {
       this.setState({
         active: true,
       });
@@ -180,6 +180,8 @@ class TimerCard extends React.Component {
         }));
         this.time = +1;
       }, 1000);
+    } else if (this.state.active) {
+      return alert('timer is started');
     }
   };
 
@@ -204,7 +206,6 @@ class TimerCard extends React.Component {
         <CardContent flex>
           <TimePanel>
             <StyledParagraph>{this.getTime(this.state.time)}</StyledParagraph>
-            <StyledParagraph>{time}</StyledParagraph>
 
             <StyledPanel active={this.state.active}>
               <StyledButton
@@ -251,8 +252,8 @@ TimerCard.propTypes = {
 const mapDispatchToProps = (dispatch) => {
   return {
     removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
-    modifyItem: (itemType, time, id) =>
-      dispatch(modifyItemAction(itemType, time, id)),
+    modifyItem: (itemType, id, time) =>
+      dispatch(modifyItemAction(itemType, id, time)),
   };
 };
 
