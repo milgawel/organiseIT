@@ -113,7 +113,7 @@ const initialState = {
     },
     {
       id: '4',
-      title: 'Preparing datas for client',
+      title: 'Preparing data for client',
       created: '15.04.2020',
       time: 13243,
     },
